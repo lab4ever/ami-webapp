@@ -25,6 +25,7 @@ pipeline {
     stages {
         stage('dependencies') {
             steps {
+                sh 'rm -rf ./packer packer.zip'
                 sh """
                 curl -sSL https://releases.hashicorp.com/packer/1.4.0/packer_1.4.0_linux_amd64.zip -o packer.zip
                 unzip packer.zip
@@ -49,7 +50,6 @@ pipeline {
                     sh """
                     ./packer build -var "tier=${TIER}"
                     """
-                    sh 'rm -rf ./packer packer.zip'
                 }
             }
         }
