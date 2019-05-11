@@ -48,7 +48,7 @@ pipeline {
             steps {
                 withAWS(role:"role-instance-jenkins", roleAccount:"$AWS_ACCOUNT_ID", roleSessionName: "jenkins-$TIER") {
                     sh """
-                    ./packer build -var "tier=${TIER}"
+                    ./packer build -var "tier=${TIER}" webapp.json
                     """
                 }
             }
