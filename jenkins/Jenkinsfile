@@ -26,7 +26,6 @@ pipeline {
         stage('dependencies') {
             steps {
                 sh """
-                sudo apt-get install unzip -y
                 curl -sSL https://releases.hashicorp.com/packer/1.4.0/packer_1.4.0_linux_amd64.zip -o packer.zip
                 unzip packer.zip
                 """
