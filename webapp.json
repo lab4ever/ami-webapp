@@ -41,6 +41,7 @@
       "tags": {
         "Name": "webapp",
         "OS_Version": "Ubuntu18.10",
+        "Tier": "{{user `tier`}}",
         "Release": "latest",
         "Runner": "EC2"
       }

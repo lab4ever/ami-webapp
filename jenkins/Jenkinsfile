@@ -1,0 +1,49 @@
+#!/usr/local/env groovy
+
+/*
+  Provision terraform webapp
+*/
+
+pipeline {
+    agent {
+        docker {
+            image 'hashicorp/packer:light'
+            args '--entrypoint=""'
+        }
+    }
+
+    parameters {
+        choice(
+            choices: ['us-east-1','sa-east-1'],
+            description: 'Amazon region',
+            name: 'REGION')
+        choice(
+            choices: ['develop','staging','production'],
+            description: 'Envirnonment',
+            name: 'TIER')
+    }
+
+    environment {
+        BACKEND_KEY = "webapp"
+    }
+
+    stages {
+        stage('validate') {
+            steps {
+                checkout scm
+
+                sh """
+                packer validate webapp.json
+                """
+            }
+        }
+
+        stage('build') {
+            steps {
+                sh """
+                packer build -var "tier=${TIER}"
+                """
+            }
+        }
+    }
+}
