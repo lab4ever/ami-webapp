@@ -12,8 +12,6 @@
       "type": "ansible",
       "playbook_file": "./ansible/sites.yml",
       "extra_arguments": [
-        "--tags",
-        "webapp",
         "--extra-vars",
         "ansible_python_interpreter=/usr/bin/python3"
       ],
