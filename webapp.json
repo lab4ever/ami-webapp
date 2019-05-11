@@ -37,9 +37,9 @@
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
       "ami_name": "webapp-{{timestamp | clean_ami_name}}",
-      "ami_description": "AMI base para o webapp",
+      "ami_description": "AMI base para o webapp-{{user `tier`}}",
       "tags": {
-        "Name": "webapp",
+        "Name": "webapp-{{user `tier`}}",
         "OS_Version": "Ubuntu18.10",
         "Tier": "{{user `tier`}}",
         "Release": "latest",
