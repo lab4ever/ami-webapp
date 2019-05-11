@@ -31,7 +31,7 @@ pipeline {
         stage('validate') {
             steps {
                 checkout scm
-                withAWS(role:"role-instance-jenkins", roleAccount:"$ACCOUNT_AWS_ID", roleSessionName: "jenkins-$env.TIER") {
+                withAWS(role:"role-instance-jenkins", roleAccount:"$AWS_ACCOUNT_ID", roleSessionName: "jenkins-$env.TIER") {
                     sh """
                     packer validate webapp.json
                     """
