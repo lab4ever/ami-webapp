@@ -5,12 +5,7 @@
 */
 
 pipeline {
-    agent {
-        docker {
-            image 'hashicorp/packer:light'
-            args '--entrypoint=""'
-        }
-    }
+    agent any
 
     parameters {
         choice(
@@ -28,11 +23,22 @@ pipeline {
     }
 
     stages {
+        stage('dependencies') {
+            steps {
+                sh """
+                apt-get install unzip -y
+                curl -sSL https://releases.hashicorp.com/packer/1.4.0/packer_1.4.0_linux_amd64.zip -o packer.zip
+                unzip packer.zip
+                """
+            }
+        }
+    }
+
+    stages {
         stage('validate') {
             steps {
                 checkout scm
                 withAWS(role:"role-instance-jenkins", roleAccount:"$AWS_ACCOUNT_ID", roleSessionName: "jenkins-$env.TIER") {
-                    sh 'ls -l'
                     sh """
                     packer validate -var "tier=${TIER}" webapp.json
                     """
