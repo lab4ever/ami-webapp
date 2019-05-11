@@ -45,7 +45,7 @@ pipeline {
 
         stage('build') {
             steps {
-                withAWS(role:"role-instance-jenkins", roleAccount:"$ACCOUNT_AWS_ID", roleSessionName: "jenkins-$TIER") {
+                withAWS(role:"role-instance-jenkins", roleAccount:"$AWS_ACCOUNT_ID", roleSessionName: "jenkins-$TIER") {
                     sh """
                     ./packer build -var "tier=${TIER}"
                     """
