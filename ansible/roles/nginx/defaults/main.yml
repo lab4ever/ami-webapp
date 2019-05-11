@@ -1,7 +1,7 @@
 ---
 nginx_state: present
 
-server_hostname: "site_name"
+server_hostname: "lab4ever.com"
 
 worker_connections: 4000
 worker_rlimit_nofile: 100000
