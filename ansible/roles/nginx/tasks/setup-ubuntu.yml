@@ -1,0 +1,10 @@
+---
+- name: install nginx
+  apt:
+    name: nginx
+    state: "{{ nginx_state }}"
+    update_cache: yes
+    autoclean: yes
+
+
+

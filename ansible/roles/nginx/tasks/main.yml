@@ -1,0 +1,8 @@
+---
+- include: setup-ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+
+- include: configure.yml
+
+- include: web_server_php.yml
+  when: enable_web_server_php

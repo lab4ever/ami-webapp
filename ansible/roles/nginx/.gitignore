@@ -1,0 +1,10 @@
+terraform.tfstate
+terraform.tfplan
+./*.tfstate
+.terraform/
+*.bak
+.*.swp
+.idea
+*.plan
+.retry
+*.retry

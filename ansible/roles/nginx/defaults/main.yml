@@ -1,0 +1,17 @@
+---
+nginx_state: present
+
+server_hostname: "site_name"
+
+worker_connections: 4000
+worker_rlimit_nofile: 100000
+
+access_log: "/var/log/nginx/access.log"
+error_log: "/var/log/nginx/error.log"
+
+keepalive_timeout: 30
+keepalive_requests: 100000
+
+# setup web server php-fpm
+enable_web_server_php: "false"
+php_fpm_version: "7.2"
