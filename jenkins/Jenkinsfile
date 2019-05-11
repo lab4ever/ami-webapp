@@ -32,8 +32,9 @@ pipeline {
             steps {
                 checkout scm
                 withAWS(role:"role-instance-jenkins", roleAccount:"$AWS_ACCOUNT_ID", roleSessionName: "jenkins-$env.TIER") {
+                    sh 'ls -l'
                     sh """
-                    packer validate webapp.json
+                    packer validate -var "tier=${TIER}" webapp.json
                     """
                 }
             }
