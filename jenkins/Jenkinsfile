@@ -49,6 +49,7 @@ pipeline {
                     sh """
                     ./packer build -var "tier=${TIER}"
                     """
+                    sh 'rm -rf ./packer packer.zip'
                 }
             }
         }
